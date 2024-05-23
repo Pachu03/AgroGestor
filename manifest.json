@@ -1,0 +1,12 @@
+{
+    "name": "agrogestor",
+    "version": "1.0.0",
+    "description": "Manifest file for agrogestor project",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build"
+    },
+    "author": "Francisco Fernandez Vazquez",
+    "license": "ISC"
+  }
+  
