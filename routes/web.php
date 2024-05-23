@@ -18,8 +18,22 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    Route::resource('users', UserController::class);
+    // Ruta para mostrar el formulario de creación de usuario
+    Route::get('usuarios/crearUsuario', 'createUserController@getIndex')->name('usuarios.create');
+    
+    // Ruta para procesar el formulario de creación de usuario
+    Route::post('crearUsuario', 'UserController@getIndex')->name('usuarios.store');
+    
+    // Ruta para mostrar el formulario de edición de usuario
+    Route::get('usuarios/editar', 'createUserController@getIndex')->name('usuarios.edit');
+    
+    // Ruta para actualizar un usuario
+    Route::put('usuarios/modificar', 'createUserController@getIndex')->name('usuarios.update');
+    
+    // Ruta para eliminar un usuario
+    Route::delete('usuarios/eliminar', 'createUserController@getIndex')->name('usuarios.destroy');
 });
+
 
 Route::group(['middleware' => ['auth', 'role:jefe']], function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');

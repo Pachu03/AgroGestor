@@ -80,13 +80,13 @@
                             </li>
                             @role('admin')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('users.index') }}">
+                                    <a class="nav-link" href="{{ route('usuarios.create') }}">
                                         Crear Usuarios
-                                    </a>
-                                    <a class="nav-link" href="{{ route('users.index') }}">
+                                    </a>                                                                        
+                                    <a class="nav-link" href="{{ route('usuarios.destroy') }}">
                                         Eliminar Usuarios
                                     </a>
-                                    <a class="nav-link" href="{{ route('users.index') }}">
+                                    <a class="nav-link" href="{{ route('usuarios.edit') }}">
                                         Modificar Usuarios
                                     </a>
                                 </li>
