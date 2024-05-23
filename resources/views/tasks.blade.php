@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Dashboard</h1>
-        <p>You're logged in!</p>
+        <h1>Tasks</h1>
+        <p>Here are your tasks.</p>
     </div>
 @endsection
