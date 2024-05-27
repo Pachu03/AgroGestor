@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\User;
 
 class RolesAndAdminSeeder extends Seeder
@@ -13,17 +14,33 @@ class RolesAndAdminSeeder extends Seeder
      */
     public function run()
     {
+        // Crear permisos con guard_name
+        $permissions = [
+            ['name' => 'crear usuarios', 'guard_name' => 'web'],
+            ['name' => 'eliminar usuarios', 'guard_name' => 'web'],
+            ['name' => 'modificar usuarios', 'guard_name' => 'web'],
+        ];
+
+        foreach ($permissions as $permissionData) {
+            Permission::firstOrCreate($permissionData);
+        }
+
         // Crear roles
         $roles = ['admin', 'jefe', 'trabajador'];
 
         foreach ($roles as $roleName) {
-            Role::create(['name' => $roleName]);
+            $role = Role::firstOrCreate(['name' => $roleName, 'guard_name' => 'web']);
+
+            // Asignar permisos al rol de administrador
+            if ($roleName == 'admin') {
+                $role->givePermissionTo(['crear usuarios', 'eliminar usuarios', 'modificar usuarios']);
+            }
         }
 
         // Crear usuario administrador
-        $admin = User::create([
+        $admin = User::firstOrCreate([
             'name' => 'Administrador',
-            'email' => 'admin@example.com',
+            'email' => 'admin@admin.com',
             'password' => bcrypt('admin'), 
         ]);
 
