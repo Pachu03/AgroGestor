@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\ModifyUserController;
 use App\Http\Controllers\DeleteUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -47,8 +48,11 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], f
     Route::get('hola', [CreateUserController::class, 'getIndex'])->name('hola');
 });
 
-Route::group(['middleware' => ['auth', 'role:trabajador']], function () {
+Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:trabajador']], function () {
     //Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 });
+
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 
 require __DIR__ . '/auth.php';
