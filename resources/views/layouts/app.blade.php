@@ -78,11 +78,8 @@
                                     <a class="nav-link" href="{{ route('usuarios.crear') }}">
                                         Crear Usuarios
                                     </a>
-                                    <a class="nav-link" href="{{ route('hola') }}">
-                                        Eliminar Usuarios
-                                    </a>
                                     <a class="nav-link" href="{{ route('usuarios.editar') }}">
-                                        Modificar Usuarios
+                                        Listar Usuarios
                                     </a>
                                 </li>
                             @endrole

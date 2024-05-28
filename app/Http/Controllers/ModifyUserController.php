@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class ModifyUserController extends Controller
 {
@@ -15,8 +16,12 @@ class ModifyUserController extends Controller
      */
     public function getIndex()
     {
-        $users = User::with('roles')->get();
-        return view('admin.listUser', compact('users'));
+        try {
+            $users = User::with('roles')->get();
+            return view('admin.listUser', compact('users'));
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios.editar')->with('error', 'Hubo un problema al cargar la lista de usuarios.');
+        }
     }
 
     /**
@@ -27,9 +32,13 @@ class ModifyUserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        $roles = Role::all();
-        return view('admin.editUser', compact('user', 'roles'));
+        try {
+            $user = User::findOrFail($id);
+            $roles = Role::all();
+            return view('admin.editUser', compact('user', 'roles'));
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios.editar')->with('error', 'Hubo un problema al cargar el formulario de edición de usuario.');
+        }
     }
 
     /**
@@ -41,29 +50,33 @@ class ModifyUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8',
-            'role' => 'required|string|in:jefe,trabajador',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+                'password' => 'nullable|string|min:8',
+                'role' => 'required|string|in:jefe,trabajador',
+            ]);
 
-        $user = User::findOrFail($id);
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        if (!empty($validatedData['password'])) {
-            $user->password = bcrypt($validatedData['password']);
+            $user = User::findOrFail($id);
+            $user->name = $validatedData['name'];
+            $user->email = $validatedData['email'];
+            if (!empty($validatedData['password'])) {
+                $user->password = Hash::make($validatedData['password']);
+            }
+
+            $roleIds = [
+                'jefe' => 2,
+                'trabajador' => 3,
+            ];
+            $user->role_id = $roleIds[$validatedData['role']];
+            $user->save();
+
+            $user->syncRoles([$validatedData['role']]);
+
+            return redirect()->route('usuarios.editar')->with('success', 'Usuario actualizado exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios.editar')->with('error', 'Hubo un problema al actualizar el usuario.');
         }
-
-        $roleIds = [
-            'jefe' => 2,
-            'trabajador' => 3,
-        ];
-        $user->role_id = $roleIds[$validatedData['role']];
-        $user->save();
-
-        $user->syncRoles([$validatedData['role']]);
-
-        return redirect()->route('usuarios.editar')->with('success', 'Usuario actualizado exitosamente.');
     }
 }
