@@ -17,7 +17,11 @@ class ModifyUserController extends Controller
     public function getIndex()
     {
         try {
-            $users = User::with('roles')->get();
+            $users = User::whereHas('roles', function ($query) {
+                $query->whereIn('id', [2, 3]);
+            })->get();
+
+            // Pasar la lista de usuarios filtrados a la vista
             return view('admin.listUser', compact('users'));
         } catch (\Exception $e) {
             return redirect()->route('usuarios.editar')->with('error', 'Hubo un problema al cargar la lista de usuarios.');
