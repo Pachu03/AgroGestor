@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class CreateUserController extends Controller
 {
-
     public function getIndex()
     {
-        return view("admin.createUser");
+        return view('admin.createUser');
     }
 
     /**
@@ -40,12 +40,16 @@ class CreateUserController extends Controller
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
+        $user->role_id = $roleIds[$validatedData['role']];
         $user->save();
 
         // Asignar el rol al usuario
-        $user->assignRole($roleIds[$validatedData['role']]);
+        $role = Role::find($user->role_id);
+        if ($role) {
+            $user->assignRole($role->name);
+        }
 
         // Redirigir a alguna vista o ruta después de crear el usuario
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
+        return redirect()->route('usuarios.crear')->with('success', 'Usuario creado exitosamente.');
     }
 }

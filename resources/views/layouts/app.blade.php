@@ -81,7 +81,7 @@
                                     <a class="nav-link" href="{{ route('hola') }}">
                                         Eliminar Usuarios
                                     </a>
-                                    <a class="nav-link" href="{{ route('usuarios.edit') }}">
+                                    <a class="nav-link" href="{{ route('usuarios.editar') }}">
                                         Modificar Usuarios
                                     </a>
                                 </li>
