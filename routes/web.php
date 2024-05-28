@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\ModifyUserController;
+use App\Http\Controllers\DeleteUserController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -25,12 +26,12 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:admin']], 
 
     // Ruta para mostrar el formulario de edición de usuario
     Route::get('usuarios/{id}/editar', [ModifyUserController::class, 'edit'])->name('usuarios.edit');
-    
+
     // Ruta para actualizar un usuario
     Route::put('usuarios/{id}', [ModifyUserController::class, 'update'])->name('usuarios.update');
 
     // Ruta para eliminar un usuario
-    Route::delete('usuarios/eliminar', [CreateUserController::class, 'destroy'])->name('usuarios.destroy');
+    Route::delete('usuarios/{id}', [DeleteUserController::class, 'destroy'])->name('usuarios.eliminar');
 });
 
 
