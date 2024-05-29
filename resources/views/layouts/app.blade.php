@@ -85,9 +85,7 @@
                             @endrole
                             @role('jefe')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('reports') }}">
-                                        View Reports
-                                    </a>
+                                    
                                 </li>
                             @endrole
                             @role('trabajador')
@@ -97,6 +95,16 @@
                                     </a>
                                 </li>
                             @endrole
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('rains.index') }}">
+                                    Mirar Lluvias
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('rains.create') }}">
+                                    Registrar Lluvia
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

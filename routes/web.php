@@ -6,6 +6,7 @@ use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\ModifyUserController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\RegistrarLluviaController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -35,6 +36,9 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:admin']], 
     Route::delete('usuarios/{id}', [DeleteUserController::class, 'destroy'])->name('usuarios.eliminar');
 });
 
+Route::get('/rains', [RegistrarLluviaController::class, 'getIndex'])->name('rains.index');
+Route::get('lluvia/crear', [RegistrarLluviaController::class, 'createRain'])->name('rains.create');
+Route::post('lluvia/listar', [RegistrarLluviaController::class, 'store'])->name('rains.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
