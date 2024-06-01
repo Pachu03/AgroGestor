@@ -27,27 +27,43 @@ class RegistrarLluviaController extends Controller
 
         $rains = $query->get();
 
-        return view('filtrar_lluvia', compact('rains'));
+        return view('rain.filtrar_lluvia', compact('rains'));
     }
 
     public function createRain()
     {
         $minDate = Carbon::now()->startOfYear()->toDateString();
-        return view('registrar_lluvia', compact('minDate'));
+        return view('rain.registrar_lluvia', compact('minDate'));
     }
 
     public function store(Request $request)
     {
+        // Validar los datos de entrada
         $validatedData = $request->validate([
-            'date' => 'required|date|after_or_equal:' . Carbon::now()->startOfYear()->toDateString(),
-            'quanti_MM' => 'required|numeric|min:0|max:1000',
-            'localiti' => 'required|string|max:255',
+            'date' => ['required', 'date', 'after_or_equal:' . Carbon::now()->startOfYear()->toDateString()],
+            'quanti_MM' => ['required', 'numeric', 'min:0', 'max:1000'],
+            'localiti' => ['required', 'string', 'max:255'],
+        ], [
+            // Mensajes de error personalizados
+            'date.required' => 'La fecha es obligatoria.',
+            'date.date' => 'La fecha debe ser válida.',
+            'date.after_or_equal' => 'La fecha debe ser igual o posterior a la fecha actual.',
+            'quanti_MM.required' => 'La cantidad de milímetros de lluvia es obligatoria.',
+            'quanti_MM.numeric' => 'La cantidad de milímetros de lluvia debe ser un número.',
+            'quanti_MM.min' => 'La cantidad de milímetros de lluvia debe ser al menos :min.',
+            'quanti_MM.max' => 'La cantidad de milímetros de lluvia no debe ser mayor a :max.',
+            'localiti.required' => 'La localidad es obligatoria.',
+            'localiti.string' => 'La localidad debe ser una cadena de caracteres.',
+            'localiti.max' => 'La localidad no debe exceder los :max caracteres.',
         ]);
 
+        // Asignar el ID del usuario actual al campo user_id
         $validatedData['user_id'] = Auth::id();
 
+        // Crear una nueva instancia de Rains con los datos validados y guardarla en la base de datos
         Rains::create($validatedData);
 
+        // Redirigir al usuario a la vista rains.index con un mensaje de éxito
         return redirect()->route('rains.index')->with('success', 'Lluvia registrada exitosamente.');
     }
 }
