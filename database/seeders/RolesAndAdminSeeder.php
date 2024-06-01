@@ -41,10 +41,9 @@ class RolesAndAdminSeeder extends Seeder
         $admin = User::firstOrCreate([
             'name' => 'Administrador',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('admin'), 
+            'password' => bcrypt('admin'),
+            'role_id' => '1',
+            'group_id' => '1'
         ]);
-
-        // Asignar rol de administrador al usuario
-        $admin->assignRole('admin');
     }
 }

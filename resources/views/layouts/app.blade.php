@@ -85,7 +85,14 @@
                             @endrole
                             @role('jefe')
                                 <li class="nav-item">
-                                    
+                                    <a class="nav-link" href="{{ route('actividad.Crear') }}">
+                                        Crear Actividades
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('actividad.ver') }}">
+                                        Actividades Echas
+                                    </a>
                                 </li>
                             @endrole
                             @role('trabajador')
