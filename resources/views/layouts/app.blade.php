@@ -95,17 +95,17 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('actividad.crear') }}">
+                                    <a class="nav-link" href="{{ route('activity.create') }}">
                                         Crear Actividades
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('actividad.ver') }}">
-                                        Actividades Echas
+                                    <a class="nav-link" href="{{ route('activity.index') }}">
+                                        Ver Actividades
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('actividad.ver') }}">
+                                    <a class="nav-link" href="{{ route('cosecha.registrar') }}">
                                         Registrar Cosecha
                                     </a>
                                 </li>
