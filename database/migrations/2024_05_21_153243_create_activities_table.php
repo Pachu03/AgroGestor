@@ -17,7 +17,8 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('state_activity');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('worker_user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('boss_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,7 +29,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('activities', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['worker_user_id']);
+            $table->dropForeign(['boss_user_id']);
         });
         Schema::dropIfExists('activities');
     }
