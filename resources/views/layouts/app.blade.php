@@ -85,13 +85,28 @@
                             @endrole
                             @role('jefe')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('actividad.Crear') }}">
+                                    <a class="nav-link" href="{{ route('grupos.ver') }}">
+                                        Agignar Grupos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('actividad.crear') }}">
                                         Crear Actividades
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('actividad.ver') }}">
                                         Actividades Echas
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('actividad.ver') }}">
+                                        Registrar Cosecha
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('informe.ver') }}">
+                                        Generar Informes
                                     </a>
                                 </li>
                             @endrole

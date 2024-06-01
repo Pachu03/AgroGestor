@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('quantity_collection');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->foreignId('group_id')->constrained('groups')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +30,7 @@ return new class extends Migration
         Schema::table('collections', function (Blueprint $table) {
             $table->dropForeign(['product_id']);
             $table->dropForeign(['group_id']);
+            $table->dropForeign(['user_id']);
         });
         Schema::dropIfExists('collections');
     }

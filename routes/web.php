@@ -7,6 +7,10 @@ use App\Http\Controllers\ModifyUserController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\RegistrarLluviaController;
+use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\CosechaController;
+use App\Http\Controllers\InformeController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,6 +43,24 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:admin']], 
 Route::get('/rains', [RegistrarLluviaController::class, 'getIndex'])->name('rains.index');
 Route::get('lluvia/crear', [RegistrarLluviaController::class, 'createRain'])->name('rains.create');
 Route::post('lluvia/listar', [RegistrarLluviaController::class, 'store'])->name('rains.store');
+
+Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], function () {
+    Route::get('/grupos', [GrupoController::class, 'index'])->name('grupos.ver');
+    Route::get('/grupos/crear', [GrupoController::class, 'create'])->name('grupos.crear');
+    Route::post('/grupos', [GrupoController::class, 'store'])->name('grupos.store');
+
+    // Rutas para actividades
+    Route::get('/actividades/crear', [ActividadController::class, 'create'])->name('actividad.crear');
+    Route::post('/actividades', [ActividadController::class, 'store'])->name('actividad.store');
+    Route::get('/actividades', [ActividadController::class, 'index'])->name('actividad.ver');
+
+    // Ruta para registrar cosechas
+    Route::get('/cosechas/registrar', [CosechaController::class, 'create'])->name('cosecha.registrar');
+    Route::post('/cosechas', [CosechaController::class, 'store'])->name('cosecha.store');
+
+    // Ruta para ver y generar informes
+    Route::get('/informes', [InformeController::class, 'index'])->name('informe.ver');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
