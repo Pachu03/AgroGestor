@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->date('sowing_date')->nullable();
-            $table->date('harvest_date')->nullable();
             $table->timestamps();
         });
     }

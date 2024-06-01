@@ -57,8 +57,8 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], f
     Route::get('/actividades', [ActividadController::class, 'index'])->name('activity.index');
 
     // Ruta para registrar cosechas
-    Route::get('/cosechas/registrar', [CosechaController::class, 'create'])->name('cosecha.registrar');
-    Route::post('/cosechas', [CosechaController::class, 'store'])->name('cosecha.store');
+    Route::get('/cosechas/registrar', [CosechaController::class, 'create'])->name('harvest.register');
+    Route::post('/cosechas', [CosechaController::class, 'store'])->name('harvest.store');
 
     // Ruta para ver y generar informes
     Route::get('/informes', [InformeController::class, 'index'])->name('informe.ver');

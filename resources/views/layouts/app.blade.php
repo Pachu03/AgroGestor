@@ -105,7 +105,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cosecha.registrar') }}">
+                                    <a class="nav-link" href="{{ route('harvest.register') }}">
                                         Registrar Cosecha
                                     </a>
                                 </li>
