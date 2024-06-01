@@ -45,9 +45,11 @@ Route::get('lluvia/crear', [RegistrarLluviaController::class, 'createRain'])->na
 Route::post('lluvia/listar', [RegistrarLluviaController::class, 'store'])->name('rains.store');
 
 Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], function () {
-    Route::get('/grupos', [GrupoController::class, 'index'])->name('grupos.ver');
-    Route::get('/grupos/crear', [GrupoController::class, 'create'])->name('grupos.crear');
-    Route::post('/grupos', [GrupoController::class, 'store'])->name('grupos.store');
+    Route::get('/grupos', [GrupoController::class, 'index'])->name('group.index');
+    Route::get('/grupos/crear', [GrupoController::class, 'create'])->name('group.create');
+    Route::post('/grupos', [GrupoController::class, 'store'])->name('group.store');
+    Route::get('/grupos/{id}/agregar-usuarios', [GrupoController::class, 'addUsers'])->name('group.add-user');
+    Route::post('/grupos/{id}/agregar-usuarios', [GrupoController::class, 'storeUsers'])->name('group.save-user');
 
     // Rutas para actividades
     Route::get('/actividades/crear', [ActividadController::class, 'create'])->name('actividad.crear');

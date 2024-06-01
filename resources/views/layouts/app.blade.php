@@ -85,8 +85,13 @@
                             @endrole
                             @role('jefe')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('grupos.ver') }}">
-                                        Agignar Grupos
+                                    <a class="nav-link" href="{{ route('group.index') }}">
+                                        Ver Grupos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('group.create') }}">
+                                        Crear Grupo
                                     </a>
                                 </li>
                                 <li class="nav-item">
