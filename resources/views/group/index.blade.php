@@ -10,13 +10,11 @@
         @endif
         <ul class="list-group mt-3">
             @foreach ($grupos->slice(3) as $grupo)
-                <!-- Excluir los primeros tres grupos -->
                 <li class="list-group-item">
                     <strong>{{ $grupo->name }}</strong>
                     <span class="badge badge-primary badge-pill">{{ $grupo->users->count() }} Usuarios</span>
                     <a href="{{ route('group.add-user', $grupo->id) }}" class="btn btn-sm btn-success float-right">Agregar
                         Usuarios</a>
-                    <!-- Mostrar los usuarios asociados a cada grupo -->
                     <ul class="list-group mt-2">
                         @foreach ($grupo->users as $user)
                             <li class="list-group-item">{{ $user->name }}</li>
