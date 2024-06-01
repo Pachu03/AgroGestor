@@ -12,6 +12,7 @@ use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\CosechaController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TareasController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -67,6 +68,12 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], f
     // Ruta para ver y generar informes
     Route::get('/informes/seleccionar', [InformeController::class, 'selectHarvest'])->name('report.select');
     Route::post('/informes/generar', [InformeController::class, 'generateReport'])->name('report.generate');
+});
+
+Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:trabajador']], function () {
+    Route::get('/tareas', [TareasController::class, 'index'])->name('task.index');
+    Route::post('/tareas/finalizar', [TareasController::class, 'finishActivity'])->name('task.finish');
+    Route::get('/historial', [TareasController::class, 'history'])->name('task.history');
 });
 
 Route::middleware('auth')->group(function () {

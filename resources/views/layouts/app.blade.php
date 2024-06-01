@@ -122,8 +122,13 @@
                             @endrole
                             @role('trabajador')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('tasks') }}">
-                                        Tasks
+                                    <a class="nav-link" href="{{ route('task.index') }}">
+                                        Actividades
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('task.history') }}">
+                                        Historico de Actividades
                                     </a>
                                 </li>
                             @endrole

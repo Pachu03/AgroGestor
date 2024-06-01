@@ -36,6 +36,7 @@ class InformeController extends Controller
             ->header('Content-Type', 'application/pdf')
             ->header('Content-Disposition', 'attachment; filename="informe_cosecha.pdf"');
     }
+
     private function generatePDFContent($collection)
     {
         // Crear una instancia de TCPDF
