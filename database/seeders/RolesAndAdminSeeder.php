@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class RolesAndAdminSeeder extends Seeder
 {
@@ -42,8 +43,17 @@ class RolesAndAdminSeeder extends Seeder
             'name' => 'Administrador',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
-            'role_id' => '1',
             'group_id' => '1'
         ]);
+
+        // Asignar rol de administrador al usuario
+        $result = $admin->assignRole('admin');
+
+        if (!$result) {
+            // Manejar el error si el rol no se pudo asignar
+            Log::error("Error al asignar el rol 'admin' al usuario {$admin->role}");
+        } else {
+            Log::error("Asignar el rol 'admin' al usuario {$admin->role_id}");
+        }
     }
 }
