@@ -18,4 +18,9 @@ class Activity extends Model
         'worker_user_id',
         'boss_user_id',
     ];
+
+    public function isDelayed()
+{
+    return now()->greaterThan($this->end_date);
+}
 }

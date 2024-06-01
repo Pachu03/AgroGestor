@@ -7,6 +7,12 @@
     <title>{{ config('app.name', 'AgroGestor') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        .logo-img {
+            height: 50px;
+            float: left;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,8 +20,9 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/dashboard') }}">
-                    {{ config('app.name', 'AgroGestor') }}
+                    <img src="{{ asset('img/logo.jpeg') }}" alt="Logo" class="logo-img">
                 </a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
