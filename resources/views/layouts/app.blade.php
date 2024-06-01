@@ -110,7 +110,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('informe.ver') }}">
+                                    <a class="nav-link" href="{{ route('product.register') }}">
+                                        Añadir Producto
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('report.select') }}">
                                         Generar Informes
                                     </a>
                                 </li>

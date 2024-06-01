@@ -11,6 +11,7 @@ use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\CosechaController;
 use App\Http\Controllers\InformeController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -60,8 +61,12 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], f
     Route::get('/cosechas/registrar', [CosechaController::class, 'create'])->name('harvest.register');
     Route::post('/cosechas', [CosechaController::class, 'store'])->name('harvest.store');
 
+    Route::get('/producto/registrar', [ProductController::class, 'create'])->name('product.register');
+    Route::post('/producto', [ProductController::class, 'store'])->name('product.store');
+
     // Ruta para ver y generar informes
-    Route::get('/informes', [InformeController::class, 'index'])->name('informe.ver');
+    Route::get('/informes/seleccionar', [InformeController::class, 'selectHarvest'])->name('report.select');
+    Route::post('/informes/generar', [InformeController::class, 'generateReport'])->name('report.generate');
 });
 
 Route::middleware('auth')->group(function () {
