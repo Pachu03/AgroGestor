@@ -1,69 +1,46 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <title>Informe de Cosecha</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-
-        .container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-
-<body>
+@section('content')
     <div class="container">
         <h1>Informe de Cosecha</h1>
-        <table>
+        <table class="table">
             <tr>
                 <th>Fecha de Recolección</th>
-                <td>{{ $cosecha->date_collection }}</td>
+                <td>{{ $collection->date_collection }}</td>
             </tr>
             <tr>
                 <th>Cantidad Recogida</th>
-                <td>{{ $cosecha->quantity_collection }}</td>
+                <td>{{ $collection->quantity_collection }} kg</td>
             </tr>
             <tr>
                 <th>Producto</th>
-                <td>{{ $cosecha->product->name }}</td>
+                <td>{{ $collection->product->name }}</td>
             </tr>
             <tr>
-                <th>Grupo</th>
-                <td>{{ $cosecha->group->name }}</td>
+                <th>Grupo e Integrantes</th>
+                <td>
+                    {{ $collection->group->name }}<br>
+                    @foreach ($collection->group->users as $user)
+                        {{ $user->name }}<br>
+                    @endforeach
+                </td>
             </tr>
             <tr>
-                <th>Usuario</th>
-                <td>{{ $cosecha->user->name }}</td>
+                <th>Jefe</th>
+                <td>{{ $collection->user->name }}</td>
             </tr>
         </table>
-    </div>
-</body>
 
-</html>
+        <div class="mt-4">
+            <form method="POST" action="{{ route('report.generate') }}">
+                @csrf
+                <input type="hidden" name="harvest_id" value="{{ $collection->id }}">
+                <button type="submit" name="action" value="download" class="btn btn-secondary">Descargar PDF</button>
+            </form>
+        </div>
+
+        <div class="mt-2">
+            <a href="{{ route('report.index') }}" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+@endsection

@@ -122,7 +122,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('report.select') }}">
+                                    <a class="nav-link" href="{{ route('report.index') }}">
                                         Generar Informes
                                     </a>
                                 </li>

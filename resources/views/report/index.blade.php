@@ -23,7 +23,9 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Generar Informe</button>
+            <div class="form-group mt-3">
+                <button type="submit" name="action" value="view" class="btn btn-primary">Ver Informe</button>
+            </div>
         </form>
     </div>
 @endsection

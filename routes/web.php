@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], f
     Route::post('/producto', [ProductController::class, 'store'])->name('product.store');
 
     // Ruta para ver y generar informes
-    Route::get('/informes/seleccionar', [InformeController::class, 'selectHarvest'])->name('report.select');
+    Route::get('/informes/seleccionar', [InformeController::class, 'selectHarvest'])->name('report.index');
     Route::post('/informes/generar', [InformeController::class, 'generateReport'])->name('report.generate');
 });
 
@@ -74,22 +74,6 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:trabajador
     Route::get('/tareas', [TareasController::class, 'index'])->name('task.index');
     Route::post('/tareas/finalizar', [TareasController::class, 'finishActivity'])->name('task.finish');
     Route::get('/historial', [TareasController::class, 'history'])->name('task.history');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-
-Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], function () {
-    //Route::get('/reports', [ReportController::class, 'index'])->name('reports');
-    Route::get('hola', [CreateUserController::class, 'getIndex'])->name('hola');
-});
-
-Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:trabajador']], function () {
-    //Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 });
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
