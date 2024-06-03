@@ -16,4 +16,5 @@
             <button type="submit" class="btn btn-primary mt-3">Crear Grupo</button>
         </form>
     </div>
+    @include('components.footer')
 @endsection

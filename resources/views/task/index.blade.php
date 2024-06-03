@@ -31,4 +31,5 @@
             </ul>
         @endif
     </div>
+    @include('components.footer')
 @endsection

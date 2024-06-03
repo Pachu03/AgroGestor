@@ -43,4 +43,5 @@
             <a href="{{ route('report.index') }}" class="btn btn-primary">Volver</a>
         </div>
     </div>
+    @include('components.footer')
 @endsection

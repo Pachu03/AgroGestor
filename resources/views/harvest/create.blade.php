@@ -43,4 +43,5 @@
             <button type="submit" class="btn btn-primary">Registrar Cosecha</button>
         </form>
     </div>
+    @include('components.footer')
 @endsection

@@ -24,4 +24,5 @@
             @endforeach
         </ul>
     </div>
+    @include('components.footer')
 @endsection

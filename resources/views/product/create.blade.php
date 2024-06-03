@@ -16,4 +16,5 @@
             <button type="submit" class="btn btn-primary">Registrar Producto</button>
         </form>
     </div>
+    @include('components.footer')
 @endsection

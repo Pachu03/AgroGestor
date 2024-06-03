@@ -18,4 +18,5 @@
             @endforelse
         </ul>
     </div>
+    @include('components.footer')
 @endsection

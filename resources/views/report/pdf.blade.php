@@ -64,6 +64,7 @@
             </tr>
         </table>
     </div>
+    @include('components.footer')
 </body>
 
 </html>

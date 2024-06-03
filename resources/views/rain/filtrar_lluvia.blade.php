@@ -65,4 +65,5 @@
             </tbody>
         </table>
     </div>
+    @include('components.footer')
 @endsection

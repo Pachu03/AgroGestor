@@ -45,4 +45,5 @@
                 <button type="submit" class="btn btn-primary">Registrar</button>
             </form>
         </div>
+        @include('components.footer')
     @endsection
