@@ -55,5 +55,49 @@ class RolesAndAdminSeeder extends Seeder
         } else {
             Log::info("Rol 'admin' asignado exitosamente al usuario {$admin->id}");
         }
+
+        // Crear usuario jefe
+        $jefe = User::firstOrCreate([
+            'name' => 'Carlos Martínez',
+            'email' => 'carlos.martinez@empresa.com',
+            'password' => bcrypt('carlosjefe'),
+            'group_id' => '2'
+        ]);
+
+        // Asignar rol de jefe al usuario
+        $result = $jefe->assignRole('jefe');
+
+        if (!$result) {
+            Log::error("Error al asignar el rol 'jefe' al usuario {$jefe->id}");
+        } else {
+            Log::info("Rol 'jefe' asignado exitosamente al usuario {$jefe->id}");
+        }
+
+        // Crear usuarios trabajadores
+        $trabajadores = [
+            ['name' => 'Ana López', 'email' => 'ana.lopez@empresa.com', 'password' => 'ana123'],
+            ['name' => 'Luis Pérez', 'email' => 'luis.perez@empresa.com', 'password' => 'luis123'],
+            ['name' => 'Marta Sánchez', 'email' => 'marta.sanchez@empresa.com', 'password' => 'marta123'],
+            ['name' => 'Juan Gómez', 'email' => 'juan.gomez@empresa.com', 'password' => 'juan123'],
+            ['name' => 'Elena Fernández', 'email' => 'elena.fernandez@empresa.com', 'password' => 'elena123'],
+        ];
+
+        foreach ($trabajadores as $trabajadorData) {
+            $trabajador = User::firstOrCreate([
+                'name' => $trabajadorData['name'],
+                'email' => $trabajadorData['email'],
+                'password' => bcrypt($trabajadorData['password']),
+                'group_id' => '3'
+            ]);
+
+            // Asignar rol de trabajador al usuario
+            $result = $trabajador->assignRole('trabajador');
+
+            if (!$result) {
+                Log::error("Error al asignar el rol 'trabajador' al usuario {$trabajador->id}");
+            } else {
+                Log::info("Rol 'trabajador' asignado exitosamente al usuario {$trabajador->id}");
+            }
+        }
     }
 }
