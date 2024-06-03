@@ -4,10 +4,8 @@
 
 @section('content')
     <div class="container">
-        <h1>Bienvenido</h1>
-        
-        @include('admin.listUser')
-
+        <h1>Dashboard</h1>
+        <p>You're logged in!</p>
     </div>
     @include('components.footer')
 @endsection
