@@ -69,8 +69,8 @@
                                 <div class="col-md-6">
                                     <select id="role" class="form-control @error('role') is-invalid @enderror"
                                         name="role" required>
-                                        <option value="jefe">Jefe</option>
-                                        <option value="trabajador">Trabajador</option>
+                                        <option value="jefe" {{ old('role') == 'jefe' ? 'selected' : '' }}>Jefe</option>
+                                        <option value="trabajador" {{ old('role') == 'trabajador' ? 'selected' : '' }}>Trabajador</option>
                                     </select>
 
                                     @error('role')
@@ -96,13 +96,9 @@
                             </div>
                         @endif
 
-                        @if ($errors->any())
+                        @if (session('error'))
                             <div class="alert alert-danger mt-3">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                                {{ session('error') }}
                             </div>
                         @endif
                     </div>
@@ -111,6 +107,4 @@
         </div>
     </div>
     @include('components.footer')
-
 @endsection
-

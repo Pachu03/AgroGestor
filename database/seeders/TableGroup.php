@@ -13,12 +13,12 @@ class TableGroup extends Seeder
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
         DB::table('groups')->insert([
-            ['name' => 'Administradores', 'description' => 'Grupo en el que se encuentra los Administradores del Sistema'],
-            ['name' => 'Jefes', 'description' => 'Grupo en el que se encuentra los Jefes del Sistema'],
-            ['name' => 'Trabajadores', 'description' => 'Grupo en el que se encuentra los Trabajadores del Sistema que se crean.'],
+            ['name' => 'Administradores', 'description' => 'Grupo en el que se encuentra los Administradores del Sistema', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Jefes', 'description' => 'Grupo en el que se encuentra los Jefes del Sistema', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Trabajadores', 'description' => 'Grupo en el que se encuentra los Trabajadores del Sistema que se crean.', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

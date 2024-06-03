@@ -38,12 +38,8 @@
             <div class="mb-3">
                 <label for="role" class="form-label">Rol</label>
                 <select class="form-control" id="role" name="role" required>
-                    @foreach ($roles as $role)
-                        <option value="{{ $role->name }}"
-                            {{ $user->roles->pluck('name')->contains($role->name) ? 'selected' : '' }}>
-                            {{ ucfirst($role->name) }}
-                        </option>
-                    @endforeach
+                    <option value="jefe">Jefe</option>
+                    <option value="trabajador">Trabajador</option>
                 </select>
             </div>
 

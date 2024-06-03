@@ -51,9 +51,9 @@ class RolesAndAdminSeeder extends Seeder
 
         if (!$result) {
             // Manejar el error si el rol no se pudo asignar
-            Log::error("Error al asignar el rol 'admin' al usuario {$admin->role}");
+            Log::error("Error al asignar el rol 'admin' al usuario {$admin->id}");
         } else {
-            Log::error("Asignar el rol 'admin' al usuario {$admin->role_id}");
+            Log::info("Rol 'admin' asignado exitosamente al usuario {$admin->id}");
         }
     }
 }

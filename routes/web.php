@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\ModifyUserController;
 use App\Http\Controllers\DeleteUserController;
@@ -24,22 +25,22 @@ Route::get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:admin']], function () {
     // Ruta para mostrar el formulario de creación de usuario
-    Route::get('usuarios/crear', [CreateUserController::class, 'getIndex'])->name('usuarios.crear');
+    Route::get('usuarios/crear', [UserController::class, 'getIndexCreate'])->name('usuarios.crear');
 
     // Ruta para procesar el formulario de creación de usuario
-    Route::post('usuarios/crear', [CreateUserController::class, 'store'])->name('usuarios.store');
+    Route::post('usuarios/crear', [UserController::class, 'store'])->name('usuarios.store');
 
     // Ruta para mostrar el formulario de edición de usuario
-    Route::get('usuarios/editar', [ModifyUserController::class, 'getIndex'])->name('usuarios.editar');
+    Route::get('usuarios/editar', [UserController::class, 'getIndexModify'])->name('usuarios.editar');
 
     // Ruta para mostrar el formulario de edición de usuario
-    Route::get('usuarios/{id}/editar', [ModifyUserController::class, 'edit'])->name('usuarios.edit');
+    Route::get('usuarios/{id}/editar', [UserController::class, 'edit'])->name('usuarios.edit');
 
     // Ruta para actualizar un usuario
-    Route::put('usuarios/{id}', [ModifyUserController::class, 'update'])->name('usuarios.update');
+    Route::put('usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update');
 
     // Ruta para eliminar un usuario
-    Route::delete('usuarios/{id}', [DeleteUserController::class, 'destroy'])->name('usuarios.eliminar');
+    Route::delete('usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.eliminar');
 });
 
 Route::get('/rains', [RegistrarLluviaController::class, 'getIndex'])->name('rains.index');
