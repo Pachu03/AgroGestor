@@ -7,10 +7,30 @@
     <title>{{ config('app.name', 'AgroGestor') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-navegador.png') }}">
+
     <style>
         .logo-img {
             height: 50px;
-            float: left;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .app-name {
+            margin-left: 10px;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .nav-item-right {
+            margin-left: auto;
+        }
+
+        .sidebar {
+            height: 100vh; /* Para que el sidebar ocupe toda la altura de la pantalla */
         }
     </style>
 </head>
@@ -18,11 +38,11 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/dashboard') }}">
                     <img src="{{ asset('img/logo.jpeg') }}" alt="Logo" class="logo-img">
                 </a>
-                
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -30,9 +50,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto"></ul>
-
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto nav-item-right">
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
