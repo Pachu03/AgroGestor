@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Dashboard</h1>
-        <p>You're logged in!</p>
+        <h1>Bienvenido</h1>
     </div>
     @include('components.footer')
 @endsection
