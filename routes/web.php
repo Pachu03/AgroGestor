@@ -43,9 +43,10 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:admin']], 
     Route::delete('usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.eliminar');
 });
 
-Route::get('/rains', [RegistrarLluviaController::class, 'getIndex'])->name('rains.index');
+Route::get('/lluvia', [RegistrarLluviaController::class, 'getIndex'])->name('rains.index');
 Route::get('lluvia/crear', [RegistrarLluviaController::class, 'createRain'])->name('rains.create');
 Route::post('lluvia/listar', [RegistrarLluviaController::class, 'store'])->name('rains.store');
+Route::get('lluvia/localidades', [RegistrarLluviaController::class, 'postLocality'])->name('rain.localiti');
 
 Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], function () {
     Route::get('/grupos', [GrupoController::class, 'index'])->name('group.index');

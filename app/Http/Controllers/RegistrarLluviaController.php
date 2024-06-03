@@ -25,9 +25,19 @@ class RegistrarLluviaController extends Controller
             }
         }
 
-        $rains = $query->get();
+        if ($request->filled('locality')) {
+            $query->where('localiti', $request->input('locality'));
+        }
+
+        $rains = $query->paginate(5);
 
         return view('rain.filtrar_lluvia', compact('rains'));
+    }
+
+    public function postLocality()
+    {
+        $localidades = Rains::select('localiti')->distinct()->pluck('localiti');
+        return response()->json($localidades);
     }
 
     public function createRain()
