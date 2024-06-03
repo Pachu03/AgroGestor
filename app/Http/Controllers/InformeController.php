@@ -11,8 +11,11 @@ class InformeController extends Controller
 {
     public function selectHarvest()
     {
-        // Obtener las cosechas del usuario actual
         $cosechas = Collection::where('user_id', Auth::id())->get();
+
+        if ($cosechas->isEmpty()) {
+            return view('report.index')->with('warning', 'No hay cosechas disponibles para generar un informe.')->with('cosechas', $cosechas);
+        }
 
         return view('report.index', compact('cosechas'));
     }
