@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Crear Grupo')
+
 @section('content')
     <div class="container">
         <h1>Crear Grupo</h1>

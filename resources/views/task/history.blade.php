@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Historial de Actividades')
+
 @section('content')
     <div class="container">
         <h1>Historial de Actividades</h1>

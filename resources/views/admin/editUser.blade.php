@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Editar Usuario')
+
 @section('content')
     <div class="container">
         <h1>Editar Usuario</h1>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Actividades Pendientes')
+
 @section('content')
     <div class="container">
         <h1>Actividades Pendientes</h1>

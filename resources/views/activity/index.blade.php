@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Actividades como Jefe')
+
 @section('content')
     <div class="container">
         <h1>Actividades como Jefe</h1>
