@@ -17,6 +17,8 @@
                     <span class="badge badge-primary badge-pill">{{ $grupo->users->count() }} Usuarios</span>
                     <a href="{{ route('group.add-user', $grupo->id) }}" class="btn btn-sm btn-success float-right">Agregar
                         Usuarios</a>
+                    <a href="{{ route('group.destroy', $grupo->id) }}" class="btn btn-sm btn-danger float-right">Eliminar
+                        grupo</a>
                     <ul class="list-group mt-2">
                         @foreach ($grupo->users as $user)
                             <li class="list-group-item">{{ $user->name }}</li>

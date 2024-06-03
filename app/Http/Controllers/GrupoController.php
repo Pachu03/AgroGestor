@@ -24,8 +24,8 @@ class GrupoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:20',
-            'description' => 'nullable|string',
+            'name' => 'required|string|max:25',
+            'description' => 'nullable|string|max:100',
         ]);
 
         $grupo = Group::create($request->only('name', 'description'));
@@ -63,5 +63,19 @@ class GrupoController extends Controller
         User::whereIn('id', $userIds)->update(['group_id' => $id]);
 
         return redirect()->route('group.index')->with('success', 'Usuarios agregados exitosamente al grupo.');
+    }
+
+    public function destroy(Group $grupo)
+    {
+        $grupoId3 = Group::find(3); // Obtener el grupo con ID 3
+
+        // Transferir los usuarios al grupo con ID 3 si el grupo actual tiene usuarios
+        if ($grupo->users()->count() > 0) {
+            $grupoId3->users()->saveMany($grupo->users);
+        }
+
+        $grupo->delete();
+
+        return redirect()->route('group.index')->with('success', 'Grupo eliminado exitosamente.');
     }
 }

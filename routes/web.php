@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:jefe']], f
     Route::post('/grupos', [GrupoController::class, 'store'])->name('group.store');
     Route::get('/grupos/{id}/agregar-usuarios', [GrupoController::class, 'addUsers'])->name('group.add-user');
     Route::post('/grupos/{id}/agregar-usuarios', [GrupoController::class, 'storeUsers'])->name('group.save-user');
+    Route::get('/group/{grupo}', [GrupoController::class, 'destroy'])->name('group.destroy');
 
     // Rutas para actividades
     Route::get('/actividades/crear', [ActividadController::class, 'create'])->name('activity.create');
