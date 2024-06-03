@@ -7,6 +7,7 @@ use App\Models\Collection;
 use App\Models\Product;
 use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
+
 class CosechaController extends Controller
 {
     public function create()
@@ -17,7 +18,12 @@ class CosechaController extends Controller
         // Obtener todos los grupos excepto los tres primeros
         $grupos = Group::where('id', '>', 3)->get();
 
-        return view('harvest.create', compact('productos', 'grupos'));
+        // Filtrar los grupos que tienen al menos un usuario
+        $gruposValidos = $grupos->filter(function ($grupo) {
+            return $grupo->users()->exists();
+        });
+
+        return view('harvest.create', compact('productos', 'gruposValidos'));
     }
 
     public function store(Request $request)
