@@ -12,7 +12,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('admin')) {
-            return view('dashboard.admin');
+            return redirect()->route('usuarios.editar');
         } elseif ($user->hasRole('jefe')) {
             return view('dashboard.jefe');
         } elseif ($user->hasRole('trabajador')) {

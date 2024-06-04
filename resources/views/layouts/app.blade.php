@@ -103,9 +103,6 @@
                                     <a class="nav-link" href="{{ route('usuarios.crear') }}">
                                         Crear Usuarios
                                     </a>
-                                    <a class="nav-link" href="{{ route('usuarios.editar') }}">
-                                        Listar Usuarios
-                                    </a>
                                 </li>
                             @endrole
                             @role('jefe')
