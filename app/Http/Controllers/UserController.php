@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserCreatedMail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
+use Swift_TransportException;
 
 class UserController extends Controller
 {
@@ -24,7 +27,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
-            // Validar los datos del formulario
             $validatedData = $request->validate([
                 'name' => 'required|string|max:25',
                 'email' => 'required|string|email|max:40|unique:users',
@@ -32,39 +34,41 @@ class UserController extends Controller
                 'role' => 'required|string|in:jefe,trabajador',
             ]);
 
-            // Definir los IDs de roles
             $roleIds = [
                 'jefe' => 2,
                 'trabajador' => 3,
             ];
 
-            // Crear el nuevo usuario
             $user = new User();
             $user->name = $validatedData['name'];
             $user->email = $validatedData['email'];
-            $user->password = Hash::make($validatedData['password']);
+            $password = $validatedData['password'];
+            $user->password = Hash::make($password);
             $user->role_id = $roleIds[$validatedData['role']];
             $user->group_id = $roleIds[$validatedData['role']];
             $user->save();
 
-            // Asignar el rol al usuario
             $role = Role::find($user->role_id);
             if ($role) {
                 $user->assignRole($role->name);
             }
 
+            Log::info('Correo enviado exitosamente a: ' . $user->email);
+
             return redirect()->route('usuarios.crear')->with('success', 'Usuario creado exitosamente.');
         } catch (ValidationException $e) {
-            // Atrapar la excepción de validación y verificar si es por el correo duplicado
             $errors = $e->validator->errors();
             if ($errors->has('email')) {
                 return redirect()->route('usuarios.crear')->withErrors(['email' => 'El correo electrónico ya está registrado.'])->withInput();
             }
             return redirect()->route('usuarios.crear')->withErrors($errors)->withInput();
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.crear')->with('error', 'Hubo un problema al crear el usuario.');
+            \Log::error('Error creando usuario: ' . $e->getMessage());
+            return redirect()->route('usuarios.crear')->with('error', 'Hubo un problema al crear el usuario: ' . $e->getMessage());
         }
     }
+
+
 
     /**
      * Display a listing of the users.
