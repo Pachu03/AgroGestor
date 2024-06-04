@@ -80,7 +80,7 @@ class UserController extends Controller
             })->paginate(5); 
 
             // Pasar la lista de usuarios filtrados y paginados a la vista
-            return view('admin.listUser', compact('users'));
+            return view('dashboard.admin', compact('users'));
         } catch (\Exception $e) {
             return redirect()->route('usuarios.editar')->with('error', 'Hubo un problema al cargar la lista de usuarios.');
         }

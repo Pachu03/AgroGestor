@@ -4,10 +4,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Bienvenido</h1>
+        <h1>Bienvenido {{ Auth::user()->name }}</h1>
 
         <h2>Lista de Usuarios</h2>
-
         <!-- Mensajes de éxito y error -->
         @if (session('success'))
             <div class="alert alert-success mt-3">
@@ -53,11 +52,9 @@
             </tbody>
         </table>
         <!-- Paginación -->
+        {{ $users->links('vendor.pagination.bootstrap-4') }}
     </div>
 
-    {{ $users->links('vendor.pagination.bootstrap-4') }}
     @include('components.footer')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
 @endsection

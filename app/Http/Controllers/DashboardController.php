@@ -14,9 +14,9 @@ class DashboardController extends Controller
         if ($user->hasRole('admin')) {
             return redirect()->route('usuarios.editar');
         } elseif ($user->hasRole('jefe')) {
-            return view('dashboard.jefe');
+            return redirect()->route('activity.index');
         } elseif ($user->hasRole('trabajador')) {
-            return view('dashboard.trabajador');
+            return redirect()->route('task.index');
         }
 
         // Redirigir a una vista predeterminada si no tiene un rol específico

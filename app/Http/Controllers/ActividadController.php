@@ -10,15 +10,15 @@ class ActividadController extends Controller
 {
 
     public function index()
-{
-    // Obtener el ID del usuario actualmente autenticado
-    $userId = auth()->id();
+    {
+        // Obtener el ID del usuario actualmente autenticado
+        $userId = auth()->id();
 
-    // Obtener las actividades donde el usuario es el jefe
-    $actividades = Activity::where('boss_user_id', $userId)->get();
+        // Obtener las actividades donde el usuario es el jefe
+        $actividades = Activity::where('boss_user_id', $userId)->paginate(5);
 
-    return view('activity.index', compact('actividades'));
-}
+        return view('dashboard.jefe', compact('actividades'));
+    }
 
 
     /**

@@ -12,9 +12,10 @@ class TareasController extends Controller
         // Obtener las actividades del usuario actual que no están terminadas
         $activities = Activity::where('worker_user_id', auth()->id())
             ->where('state_activity', 1)
-            ->get();
+            ->paginate(5);
 
-        return view('task.index', compact('activities'));
+
+        return view('dashboard.trabajador', compact('activities'));
     }
 
     public function history()
