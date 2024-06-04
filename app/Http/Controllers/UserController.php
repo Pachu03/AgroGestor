@@ -53,8 +53,6 @@ class UserController extends Controller
                 $user->assignRole($role->name);
             }
 
-            Log::info('Correo enviado exitosamente a: ' . $user->email);
-
             return redirect()->route('usuarios.crear')->with('success', 'Usuario creado exitosamente.');
         } catch (ValidationException $e) {
             $errors = $e->validator->errors();
@@ -63,7 +61,6 @@ class UserController extends Controller
             }
             return redirect()->route('usuarios.crear')->withErrors($errors)->withInput();
         } catch (\Exception $e) {
-            \Log::error('Error creando usuario: ' . $e->getMessage());
             return redirect()->route('usuarios.crear')->with('error', 'Hubo un problema al crear el usuario: ' . $e->getMessage());
         }
     }
@@ -80,14 +77,15 @@ class UserController extends Controller
         try {
             $users = User::whereHas('roles', function ($query) {
                 $query->whereIn('id', [2, 3]);
-            })->get();
+            })->paginate(5); 
 
-            // Pasar la lista de usuarios filtrados a la vista
+            // Pasar la lista de usuarios filtrados y paginados a la vista
             return view('admin.listUser', compact('users'));
         } catch (\Exception $e) {
             return redirect()->route('usuarios.editar')->with('error', 'Hubo un problema al cargar la lista de usuarios.');
         }
     }
+
 
     /**
      * Show the form for editing the specified user.

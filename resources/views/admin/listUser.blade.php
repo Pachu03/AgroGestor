@@ -50,7 +50,11 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Paginación -->
     </div>
+
+    {{ $users->links('vendor.pagination.bootstrap-4') }}
     @include('components.footer')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @endsection
