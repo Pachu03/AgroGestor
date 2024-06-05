@@ -74,7 +74,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesion') }}
+                                        {{ __('actions.log_out') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -95,7 +95,7 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('dashboard') }}">
-                                    Inicio
+                                    {{ __('actions.home') }}
                                 </a>
                             </li>
                             @role('admin')
