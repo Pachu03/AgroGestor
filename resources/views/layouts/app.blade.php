@@ -30,7 +30,8 @@
         }
 
         .sidebar {
-            height: 100vh; /* Para que el sidebar ocupe toda la altura de la pantalla */
+            height: 100vh;
+            /* Para que el sidebar ocupe toda la altura de la pantalla */
         }
     </style>
 </head>
@@ -101,67 +102,62 @@
                             @role('admin')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('usuarios.crear') }}">
-                                        Crear Usuarios
+                                        {{ __('Create Users') }}
                                     </a>
                                 </li>
                             @endrole
                             @role('jefe')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('group.index') }}">
-                                        Ver Grupos
+                                        {{ __('View Groups') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('group.create') }}">
-                                        Crear Grupo
+                                        {{ __('Create Group') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('activity.create') }}">
-                                        Crear Actividades
+                                        {{ __('Create Activities') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('activity.index') }}">
-                                        Ver Actividades
+                                        {{ __('View Activities') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('harvest.register') }}">
-                                        Registrar Cosecha
+                                        {{ __('Register Harvest') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('product.register') }}">
-                                        Añadir Producto
+                                        {{ __('Add Product') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('report.index') }}">
-                                        Generar Informes
+                                        {{ __('Generate Reports') }}
                                     </a>
                                 </li>
                             @endrole
                             @role('trabajador')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('task.index') }}">
-                                        Actividades
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('task.history') }}">
-                                        Historico de Actividades
+                                        {{ __('Activity History') }}
                                     </a>
                                 </li>
                             @endrole
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('rains.index') }}">
-                                    Mirar Lluvias
+                                    {{ __('View Rainfall') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('rains.create') }}">
-                                    Registrar Lluvia
+                                    {{ __('Record Rainfall') }}
                                 </a>
                             </li>
                         </ul>

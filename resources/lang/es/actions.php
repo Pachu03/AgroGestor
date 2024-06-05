@@ -91,7 +91,7 @@ return [
     'settings'        => 'Ajustes',
     'show'            => 'Mostrar',
     'show_all'        => 'Mostrar todo',
-    'sign_in'         => 'Iniciar sesión',
+    'sign_in'         => 'Iniciar Sesión',
     'solve'           => 'Resolver',
     'start'           => 'Comenzar',
     'stop'            => 'Detener',
