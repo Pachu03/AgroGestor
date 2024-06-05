@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'AgroGestor') }} - @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('img/logo-navegador.png') }}">
 
     <style>
@@ -49,6 +48,24 @@
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <div class="dropdown nav-item">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownLang" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        @switch(app()->getLocale())
+                            @case('en')
+                                <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
+                                @break
+                            @case('es')
+                                <img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español
+                                @break
+                        @endswitch
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownLang">
+                        <a class="dropdown-item" href="{{ route('lang.switch', 'es') }}"><img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español</a>
+                        <a class="dropdown-item" href="{{ route('lang.switch', 'en') }}"><img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English</a>
+                    </div>
+                </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto nav-item-right">
@@ -96,7 +113,7 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('dashboard') }}">
-                                    {{ __('actions.home') }}
+                                    @lang('actions.home')
                                 </a>
                             </li>
                             @role('admin')
@@ -173,7 +190,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>
