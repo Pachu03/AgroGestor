@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Lista de Usuario')
+@section('title', __('User List'))
 
 @section('content')
     <div class="container">
-        <h1>Lista de Usuarios</h1>
+        <h1>@lang('User List')</h1>
 
         <!-- Mensajes de éxito y error -->
         @if (session('success'))

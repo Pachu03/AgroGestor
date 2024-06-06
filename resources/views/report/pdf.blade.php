@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Informe de Cosecha</title>
+    <title>@lang('Harvest Report') </title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -40,26 +40,26 @@
 
 <body>
     <div class="container">
-        <h1>Informe de Cosecha</h1>
+        <h1>@lang('Harvest Report')</h1>
         <table>
             <tr>
-                <th>Fecha de Recolección</th>
+                <th>@lang('Harvest Date')</th>
                 <td>{{ $collection->date_collection }}</td>
             </tr>
             <tr>
-                <th>Cantidad Recogida</th>
+                <th>@lang('Collected Quantity')</th>
                 <td>{{ $collection->quantity_collection }}</td>
             </tr>
             <tr>
-                <th>Producto</th>
+                <th>@lang('Product')</th>
                 <td>{{ $collection->product->name }}</td>
             </tr>
             <tr>
-                <th>Grupo</th>
+                <th>@lang('Group')</th>
                 <td>{{ $collection->group->name }}</td>
             </tr>
             <tr>
-                <th>Usuario</th>
+                <th>@lang('User')</th>
                 <td>{{ $collection->user->name }}</td>
             </tr>
         </table>

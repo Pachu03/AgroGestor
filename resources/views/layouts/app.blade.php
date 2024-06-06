@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{app()->getLocale()}}">
 
 <head>
     <meta charset="utf-8">
@@ -53,6 +53,7 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownLang"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @switch(app()->getLocale())
+                        
                             @case('en')
                                 <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
                             @break

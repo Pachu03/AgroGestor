@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Lista de Lluvias')
+@section('title', __('Rain List'))
 
 @section('content')
     <div class="container">
-        <h1>Lista de Lluvias</h1>
+        <h1>@lang('Rain List')</h1>
 
         <!-- Mensajes de éxito y error -->
         @if (session('success'))
@@ -26,7 +26,7 @@
         <!-- Verificar si hay datos en la tabla de lluvias -->
         @if ($rains->isEmpty())
             <div class="alert alert-info mt-3">
-                No hay registros de lluvias.
+                @lang('No rainfall records')
             </div>
         @else
             <!-- Filtros -->
@@ -34,31 +34,31 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="from_date">Desde</label>
+                            <label for="from_date">@lang('From')</label>
                             <input type="date" id="from_date" name="from_date" class="form-control"
                                 value="{{ request('from_date') }}">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="to_date">Hasta</label>
+                            <label for="to_date">@lang('To')</label>
                             <input type="date" id="to_date" name="to_date" class="form-control"
                                 value="{{ request('to_date') }}">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="locality">Localidad</label>
+                            <label for="locality">@lang('Location')</label>
                             <select id="locality" name="locality" class="form-control">
-                                <option value="">Todas las localidades</option>
+                                <option value="">@lang('All locations')</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary">Filtrar</button>
-                        <button type="button" id="resetFilters" class="btn btn-secondary ml-2">Restablecer filtros</button>
+                        <button type="submit" class="btn btn-primary">@lang('Filter')</button>
+                        <button type="button" id="resetFilters" class="btn btn-secondary ml-2">@lang('Reset filters')</button>
                     </div>
                 </div>
             </form>
@@ -67,10 +67,10 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Milímetros</th>
-                        <th>Localidad</th>
-                        <th>Usuario</th>
+                        <th>@lang('Date')Fecha</th>
+                        <th>@lang('Square Millimeters')Milímetros Cuadrados</th>
+                        <th>@lang('Location')Localidad</th>
+                        <th>@lang('Users')Usuario</th>
                     </tr>
                 </thead>
                 <tbody>

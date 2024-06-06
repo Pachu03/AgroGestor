@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Historial de Actividades')
+@section('title', __('Historial de Actividades'))
 
 @section('content')
     <div class="container">
-        <h1>Historial de Actividades</h1>
+        <h1>@lang('Activity History')</h1>
         <ul class="list-group mt-3">
             @forelse ($history as $activity)
                 <li class="list-group-item {{ $activity->isDelayed() ? 'text-danger' : '' }}">
                     <strong>{{ $activity->type_activity }}</strong> - {{ $activity->description }}<br>
-                    <strong>Fecha de Inicio:</strong> {{ $activity->start_date }}<br>
-                    <strong>Fecha de Fin:</strong> {{ $activity->end_date }}<br>
-                    <strong>Jefe:</strong> {{ $activity->boss_user_id }}<br>
+                    <strong>@lang('Start Date'):</strong> {{ $activity->start_date }}<br>
+                    <strong>@lang('End Date'):</strong> {{ $activity->end_date }}<br>
+                    <strong>@lang('Boss'):</strong> {{ $activity->boss_user_id }}<br>
                 </li>
             @empty
                 <li class="list-group-item">
-                    No hay historial de actividades disponible.
+                    @lang('There is no activity history available').
                 </li>
             @endforelse
         </ul>

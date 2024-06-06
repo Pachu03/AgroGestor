@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Informe de Cosecha')
+@section('title', __('Harvest Report'))
 
 @section('content')
     <div class="container">
-        <h1>Informe de Cosecha</h1>
+        <h1>@lang('Harvest Report')</h1>
         <table class="table">
             <tr>
-                <th>Fecha de Recolección</th>
+                <th>@lang('Harvest Date')</th>
                 <td>{{ $collection->date_collection }}</td>
             </tr>
             <tr>
-                <th>Cantidad Recogida</th>
-                <td>{{ $collection->quantity_collection }} kg</td>
+                <th>@lang('Collected Quantity')</th>
+                <td>{{ $collection->quantity_collection }}</td>
             </tr>
             <tr>
-                <th>Producto</th>
+                <th>@lang('Product')</th>
                 <td>{{ $collection->product->name }}</td>
             </tr>
             <tr>
-                <th>Grupo e Integrantes</th>
+                <th>@lang('Group and Members')</th>
                 <td>
                     {{ $collection->group->name }}<br>
                     @foreach ($collection->group->users as $user)
@@ -28,7 +28,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Jefe</th>
+                <th>@lang('Boss')</th>
                 <td>{{ $collection->user->name }}</td>
             </tr>
         </table>
@@ -37,12 +37,12 @@
             <form method="POST" action="{{ route('report.generate') }}">
                 @csrf
                 <input type="hidden" name="harvest_id" value="{{ $collection->id }}">
-                <button type="submit" name="action" value="download" class="btn btn-secondary">Descargar PDF</button>
+                <button type="submit" name="action" value="download" class="btn btn-secondary">@lang('Download PDF')</button>
             </form>
         </div>
 
         <div class="mt-2">
-            <a href="{{ route('report.index') }}" class="btn btn-primary">Volver</a>
+            <a href="{{ route('report.index') }}" class="btn btn-primary">@lang('Back')</a>
         </div>
     </div>
     @include('components.footer')

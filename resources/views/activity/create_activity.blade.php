@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Crear Actividad')
+@section('title', __('Create Activities'))
 
 @section('content')
     <div class="container">

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Crear Usuario')
+@section('title', __('Create Users'))
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Crear Usuario') }}</div>
+                    <div class="card-header">{{ __('Create Users') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('usuarios.store') }}">
@@ -71,8 +71,10 @@
                                 <div class="col-md-6">
                                     <select id="role" class="form-control @error('role') is-invalid @enderror"
                                         name="role" required>
-                                        <option value="jefe" {{ old('role') == 'jefe' ? 'selected' : '' }}>@lang('Boss')</option>
-                                        <option value="trabajador" {{ old('role') == 'trabajador' ? 'selected' : '' }}>@lang('Worker')</option>
+                                        <option value="jefe" {{ old('role') == 'jefe' ? 'selected' : '' }}>
+                                            @lang('Boss')</option>
+                                        <option value="trabajador" {{ old('role') == 'trabajador' ? 'selected' : '' }}>
+                                            @lang('Worker')</option>
                                     </select>
 
                                     @error('role')

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Registrar Cosecha')
+@section('title', __('Register Harvest'))
 
 @section('content')
     <div class="container">
-        <h1>Registrar Cosecha</h1>
+        <h1>@lang('Register Harvest')</h1>
         @if (session('success'))
             <div class="alert alert-success mt-3">
                 {{ session('success') }}
@@ -16,18 +16,18 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="date_collection">Fecha de Recolección</label>
+                    <label for="date_collection">@lang('Harvest Date')</label>
                     <input type="date" class="form-control" id="date_collection" name="date_collection" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity_collection">Cantidad Recogida</label>
+                    <label for="quantity_collection">@lang('Collected Quantity')</label>
                     <input type="number" class="form-control" id="quantity_collection" name="quantity_collection"
                         min="1" max="10000" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="product_id">Producto</label>
+                    <label for="product_id">@lang('')</label>
                     <select class="form-control" id="product_id" name="product_id" required>
                         @foreach ($productos as $producto)
                             <option value="{{ $producto->id }}">{{ $producto->name }}</option>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="group_id">Grupo</label>
+                    <label for="group_id">@lang('Group')</label>
                     <select class="form-control" id="group_id" name="group_id" required>
                         @foreach ($gruposValidos as $grupo)
                             <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
@@ -44,12 +44,12 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Registrar Cosecha</button>
+                <button type="submit" class="btn btn-primary">@lang('Register Harvest')</button>
             </form>
         @else
             <div class="alert alert-danger mt-3">
-                No hay grupos disponibles para seleccionar, crea un grupo o añade Trabajadores a los grupos.<br>
-                Si tiene algún problema contacta con el Administrador del Sistema.
+                @lang('There are no groups available to select, create a group, or add Workers to the groups').<br>
+                @lang('If you encounter any problems, contact the System Administrator').
             </div>
         @endif
     </div>
