@@ -71,8 +71,8 @@
                                 <div class="col-md-6">
                                     <select id="role" class="form-control @error('role') is-invalid @enderror"
                                         name="role" required>
-                                        <option value="jefe" {{ old('role') == 'jefe' ? 'selected' : '' }}>Jefe</option>
-                                        <option value="trabajador" {{ old('role') == 'trabajador' ? 'selected' : '' }}>Trabajador</option>
+                                        <option value="jefe" {{ old('role') == 'jefe' ? 'selected' : '' }}>@lang('Boss')</option>
+                                        <option value="trabajador" {{ old('role') == 'trabajador' ? 'selected' : '' }}>@lang('Worker')</option>
                                     </select>
 
                                     @error('role')

@@ -4,19 +4,19 @@
 
 @section('content')
     <div class="container">
-        <h1>Bienvenido {{ Auth::user()->name }}</h1>
+        <h1>@lang('Wellcome') {{ Auth::user()->name }}</h1>
 
         @if ($actividades->isEmpty())
-            <p>No has asignado aun actividades.</p>
+            <p>@lang("You haven't assigned any activities yet")</p>
         @else
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Tipo de Actividad</th>
-                        <th>Descripción</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha de Fin</th>
-                        <th>Estado</th>
+                        <th>@lang(('Activity Type'))</th>
+                        <th>@lang(('Description'))</th>
+                        <th>@lang(('Start Date'))</th>
+                        <th>@lang(('End Date'))</th>
+                        <th>@lang(('Status'))</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,8 +32,8 @@
                 </tbody>
             </table>
         @endif
-        
-    {{ $actividades->links('vendor.pagination.bootstrap-4') }}
+
+        {{ $actividades->links('vendor.pagination.bootstrap-4') }}
 
     </div>
     @include('components.footer')

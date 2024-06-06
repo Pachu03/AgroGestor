@@ -50,22 +50,27 @@
                 </button>
 
                 <div class="dropdown nav-item">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownLang" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownLang"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @switch(app()->getLocale())
                             @case('en')
                                 <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
-                                @break
+                            @break
+                
                             @case('es')
                                 <img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español
-                                @break
+                            @break
                         @endswitch
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownLang">
-                        <a class="dropdown-item" href="{{ route('lang.switch', 'es') }}"><img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español</a>
-                        <a class="dropdown-item" href="{{ route('lang.switch', 'en') }}"><img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English</a>
+                        <a class="dropdown-item" href="{{ route('lang.switch', 'es') }}">
+                            <img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español
+                        </a>
+                        <a class="dropdown-item" href="{{ route('lang.switch', 'en') }}">
+                            <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
+                        </a>
                     </div>
-                </div>
+                </div>            
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto nav-item-right">
@@ -119,7 +124,7 @@
                             @role('admin')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('usuarios.crear') }}">
-                                        {{ __('Create Users') }}
+                                        @lang('Create Users')
                                     </a>
                                 </li>
                             @endrole

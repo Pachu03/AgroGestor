@@ -79,10 +79,9 @@ return [
     */
 
     'locale' => 'es',
-
-    'fallback_locale' => 'en',
-
-    'faker_locale' =>'es_ES',
+    'fallback_locale' => 'es',
+    'faker_locale' => 'es_ES',
+    'locales' => ['es', 'en'],
 
     /*
     |--------------------------------------------------------------------------

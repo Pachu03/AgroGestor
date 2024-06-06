@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TareasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Middleware\LocaleMiddleware;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -22,7 +23,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
 // Ruta para cambiar el idioma
-Route::get('lang/{locale}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+Route::get('lang/{locale}', [LanguageController::class, 'switchLang'])
+    ->name('lang.switch')
+    ->middleware(LocaleMiddleware::class);
 
 Route::group(['middleware' => ['auth', 'App\Http\Middleware\CheckRole:admin']], function () {
     // Ruta para mostrar el formulario de creación de usuario

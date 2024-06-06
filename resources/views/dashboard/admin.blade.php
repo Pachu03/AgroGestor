@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Bienvenido {{ Auth::user()->name }}</h1>
+        <h1>@lang(('Wellcome')) {{ Auth::user()->name }}</h1>
 
-        <h2>Lista de Usuarios</h2>
+        <h2>@lang(('User list'))</h2>
         <!-- Mensajes de éxito y error -->
         @if (session('success'))
             <div class="alert alert-success mt-3">
@@ -27,10 +27,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Acciones</th>
+                    <th>@lang(('Name'))</th>
+                    <th>@lang(('Email'))</th>
+                    <th>@lang(('Role'))</th>
+                    <th>@lang(('Action'))</th>
                 </tr>
             </thead>
             <tbody>
