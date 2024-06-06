@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('type_activity');
-            $table->string('description');
+            $table->string('type_activity',20);
+            $table->string('description',100);
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('state_activity');

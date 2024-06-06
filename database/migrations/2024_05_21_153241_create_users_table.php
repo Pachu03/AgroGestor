@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name',30);
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password',15);
             $table->foreignId('role_id')->nullable()->constrained('roles')->onDelete('cascade');
             $table->foreignId('group_id')->nullable()->constrained('groups')->onDelete('cascade');
             $table->timestamps();
