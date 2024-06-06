@@ -18,4 +18,11 @@ class LanguageController extends Controller
         }
         return Redirect::to(url()->previous());
     }
+
+    public function change(Request $request)
+    {
+        App::setLocale($request->lang);
+        session()->put('locale', $request->lang);
+        return Redirect::to(url()->previous());
+    }
 }

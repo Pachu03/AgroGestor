@@ -9,11 +9,20 @@ use Illuminate\Support\Facades\Session;
 
 class LocaleMiddleware
 {
-    public function handle($request, Closure $next)
+    /*public function handle($request, Closure $next)
     {
         $locale = Session::get('applocale', config('app.locale'));
         \Log::info("Locale set to: " . $locale);
         App::setLocale($locale);
+
+        return $next($request);
+    }*/
+
+    public function handle($request, Closure $next)
+    {
+        if (session()->has('locale')) {
+            App::setLocale(session()->get('locale'));
+        }
 
         return $next($request);
     }

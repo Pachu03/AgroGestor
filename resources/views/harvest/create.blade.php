@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="product_id">@lang('')</label>
+                    <label for="product_id">@lang('Product')</label>
                     <select class="form-control" id="product_id" name="product_id" required>
                         @foreach ($productos as $producto)
                             <option value="{{ $producto->id }}">{{ $producto->name }}</option>

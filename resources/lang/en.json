@@ -256,7 +256,7 @@
     "You're logged in!": "You're logged in!",
     "Your email address is unverified.": "Your email address is unverified.",
     "Create Users": "Create Users",
-    "View Groups": "Ver Grupos",
+    "View Groups": "View Groups",
     "Create Group": "Create Group",
     "Create Activities": "Create Activities",
     "View Activities": "View Activities",
@@ -326,5 +326,7 @@
     "Download PDF": "Download PDF",
     "Back": "Back",
     "There is no activity history available": "There is no activity history available",
-    "Control Panel": "Control Panel"
+    "Control Panel": "Control Panel",
+    "Language":"Language",
+    "Modify": "Modify"
 }

@@ -67,10 +67,10 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>@lang('Date')Fecha</th>
-                        <th>@lang('Square Millimeters')Milímetros Cuadrados</th>
-                        <th>@lang('Location')Localidad</th>
-                        <th>@lang('Users')Usuario</th>
+                        <th>@lang('Date')</th>
+                        <th>@lang('Square Millimeters')</th>
+                        <th>@lang('Location')</th>
+                        <th>@lang('Users')</th>
                     </tr>
                 </thead>
                 <tbody>

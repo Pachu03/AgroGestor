@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="container">
-        <h1>@lang(('Wellcome')) {{ Auth::user()->name }}</h1>
+        <h1>@lang('Wellcome') {{ Auth::user()->name }}</h1>
 
-        <h2>@lang(('User list'))</h2>
+        <h2>@lang('User list')</h2>
         <!-- Mensajes de éxito y error -->
         @if (session('success'))
             <div class="alert alert-success mt-3">
@@ -27,10 +27,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>@lang(('Name'))</th>
-                    <th>@lang(('Email'))</th>
-                    <th>@lang(('Role'))</th>
-                    <th>@lang(('Action'))</th>
+                    <th>@lang('Name')</th>
+                    <th>@lang('Email')</th>
+                    <th>@lang('Role')</th>
+                    <th>@lang('Action')</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,11 +40,11 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->roles->pluck('name')->implode(', ') }}</td>
                         <td>
-                            <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-primary">Modificar</a>
+                            <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-primary">@lang('Modify')</a>
                             <form action="{{ route('usuarios.eliminar', $user->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger">@lang('Delete')</button>
                             </form>
                         </td>
                     </tr>

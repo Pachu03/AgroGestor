@@ -14,6 +14,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Middleware\LocaleMiddleware;
 
+Route::get('lang/change', [LanguageController::class, 'change'])->name('changeLang');
+
 Route::get('/', function () {
     return view('auth.login');
 });
