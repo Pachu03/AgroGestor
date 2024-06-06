@@ -49,31 +49,32 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="dropdown nav-item">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownLang"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @switch(app()->getLocale())
-                            @case('en')
-                                <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
-                            @break
-
-                            @case('es')
-                                <img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español
-                            @break
-                        @endswitch
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownLang">
-                        <a class="dropdown-item" href="#" onclick="changeLanguage('es')">
-                            <img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español
-                        </a>
-                        <a class="dropdown-item" href="#" onclick="changeLanguage('en')">
-                            <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
-                        </a>
-                    </div>
-                </div>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto nav-item-right">
+                        <!-- Language Dropdown -->
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownLang"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @switch(app()->getLocale())
+                                    @case('en')
+                                        <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
+                                    @break
+
+                                    @case('es')
+                                        <img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español
+                                    @break
+                                @endswitch
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownLang">
+                                <a class="dropdown-item" href="#" onclick="changeLanguage('es')">
+                                    <img src="{{ asset('img/es-flag.svg') }}" alt="Spain Flag"> Español
+                                </a>
+                                <a class="dropdown-item" href="#" onclick="changeLanguage('en')">
+                                    <img src="{{ asset('img/uk-flag.svg') }}" alt="UK Flag"> English
+                                </a>
+                            </div>
+                        </li>
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -110,6 +111,7 @@
                 </div>
             </div>
         </nav>
+
 
         <div class="container-fluid">
             <div class="row">
@@ -197,9 +199,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script>
         function changeLanguage(locale) {
-        var url = "{{ route('changeLang') }}";
-        window.location.href = url + "?lang=" + locale;
-    }
+            var url = "{{ route('changeLang') }}";
+            window.location.href = url + "?lang=" + locale;
+        }
     </script>
 </body>
 
