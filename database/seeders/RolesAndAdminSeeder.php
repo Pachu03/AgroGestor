@@ -26,14 +26,18 @@ class RolesAndAdminSeeder extends Seeder
             Permission::firstOrCreate($permissionData);
         }
 
-        // Crear roles
-        $roles = ['admin', 'jefe', 'trabajador'];
+        // Crear roles con IDs específicos
+        $roles = [
+            ['id' => 1, 'name' => 'admin', 'guard_name' => 'web'],
+            ['id' => 2, 'name' => 'jefe', 'guard_name' => 'web'],
+            ['id' => 3, 'name' => 'trabajador', 'guard_name' => 'web']
+        ];
 
-        foreach ($roles as $roleName) {
-            $role = Role::firstOrCreate(['name' => $roleName, 'guard_name' => 'web']);
+        foreach ($roles as $roleData) {
+            $role = Role::firstOrCreate(['id' => $roleData['id']], ['name' => $roleData['name'], 'guard_name' => $roleData['guard_name']]);
 
             // Asignar permisos al rol de administrador
-            if ($roleName == 'admin') {
+            if ($roleData['name'] == 'admin') {
                 $role->givePermissionTo(['crear usuarios', 'eliminar usuarios', 'modificar usuarios']);
             }
         }
@@ -47,13 +51,10 @@ class RolesAndAdminSeeder extends Seeder
         ]);
 
         // Asignar rol de administrador al usuario
-        $result = $admin->assignRole('admin');
-
-        if (!$result) {
-            // Manejar el error si el rol no se pudo asignar
-            Log::error("Error al asignar el rol 'admin' al usuario {$admin->id}");
-        } else {
-            Log::info("Rol 'admin' asignado exitosamente al usuario {$admin->id}");
+        if ($admin->exists) {
+            $admin->assignRole('admin');
+            $admin->role_id = 1;
+            $admin->save();
         }
 
         // Crear usuario jefe
@@ -65,12 +66,10 @@ class RolesAndAdminSeeder extends Seeder
         ]);
 
         // Asignar rol de jefe al usuario
-        $result = $jefe->assignRole('jefe');
-
-        if (!$result) {
-            Log::error("Error al asignar el rol 'jefe' al usuario {$jefe->id}");
-        } else {
-            Log::info("Rol 'jefe' asignado exitosamente al usuario {$jefe->id}");
+        if ($jefe->exists) {
+            $jefe->assignRole('jefe');
+            $jefe->role_id = 2;
+            $jefe->save();
         }
 
         // Crear usuarios trabajadores
@@ -91,12 +90,10 @@ class RolesAndAdminSeeder extends Seeder
             ]);
 
             // Asignar rol de trabajador al usuario
-            $result = $trabajador->assignRole('trabajador');
-
-            if (!$result) {
-                Log::error("Error al asignar el rol 'trabajador' al usuario {$trabajador->id}");
-            } else {
-                Log::info("Rol 'trabajador' asignado exitosamente al usuario {$trabajador->id}");
+            if ($trabajador->exists) {
+                $trabajador->assignRole('trabajador');
+                $trabajador->role_id = 3;
+                $trabajador->save();
             }
         }
     }
