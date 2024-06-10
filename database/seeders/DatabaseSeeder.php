@@ -14,6 +14,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TableGroup::class,
             RolesAndAdminSeeder::class,
+            ProductsTableSeeder::class,
+            ActivitiesTableSeeder::class,
+            RainsTableSeeder::class,
+            CollectionsTableSeeder::class,
         ]);
     }
 }

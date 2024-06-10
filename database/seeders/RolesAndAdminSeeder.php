@@ -86,7 +86,7 @@ class RolesAndAdminSeeder extends Seeder
                 'name' => $trabajadorData['name'],
                 'email' => $trabajadorData['email'],
                 'password' => bcrypt($trabajadorData['password']),
-                'group_id' => '3'
+                'group_id' => '4'
             ]);
 
             // Asignar rol de trabajador al usuario
