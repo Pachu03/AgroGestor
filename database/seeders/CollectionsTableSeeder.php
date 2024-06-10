@@ -23,7 +23,7 @@ class CollectionsTableSeeder extends Seeder
                 'date_collection' => '2024-07-10',
                 'quantity_collection' => 300,
                 'product_id' => 2,
-                'group_id' => 4,
+                'group_id' => 5,
                 'user_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -32,7 +32,7 @@ class CollectionsTableSeeder extends Seeder
                 'date_collection' => '2024-07-20',
                 'quantity_collection' => 400,
                 'product_id' => 3,
-                'group_id' => 4,
+                'group_id' => 5,
                 'user_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now()

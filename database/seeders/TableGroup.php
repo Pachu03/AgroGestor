@@ -20,7 +20,7 @@ class TableGroup extends Seeder
             ['name' => 'Jefes', 'description' => 'Grupo en el que se encuentra los Jefes del Sistema', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Trabajadores', 'description' => 'Grupo en el que se encuentra los Trabajadores del Sistema que se crean.', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Recogida', 'description' => 'Grupo para la recogida de productos.', 'created_at' => now(), 'updated_at' => now()],
-
+            ['name' => 'Mantenimiento', 'description' => 'Grupo responsable del mantenimiento del Campo.', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
